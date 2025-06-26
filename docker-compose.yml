@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  groupsession:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: groupsession
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./gsession_data:/home/gsession
+    environment:
+      - JAVA_OPTS=-Xmx2048m -Xms1024m -Duser.timezone=Asia/Tokyo -Dfile.encoding=UTF-8
+      - TZ=Asia/Tokyo
+    restart: unless-stopped
